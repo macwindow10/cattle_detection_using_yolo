@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script
+      class="jsbin"
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
+    ></script>
+    <script
+      class="jsbin"
+      src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"
+    ></script>
+    <meta charset="UTF-8">
+    <title>Cattle Count in Image</title>
+    <style>
+        .topnav {
+          background-color: #333;
+          overflow: hidden;
+        }
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 1s7px;
+        }
+        .topnav a.active {
+          background-color: #04AA6D;
+          color: white;
+        }
+        select {
+            width: 150px;
+            margin: 10px;
+        }
+        .badge_category {
+            background-color: grey;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .badge_product {
+            background-color: lightpink;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .badge_price {
+            background-color: deepskyblue;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .badge_loyalty_points {
+            background-color: springgreen;
+            border-radius: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="topnav">
+
+</div>
+
+<h1>Cattle Count in Image</h1>
+
+<h2>Upload an Image</h2>
+
+<form action="/" method="POST" id="form"
+      enctype="multipart/form-data"
+      onsubmit="return onSubmit()">
+
+    <div style="padding: 10px">
+        Select an Image
+        <input type="file" id="cattle_image" name="cattle_image"
+        onchange="readURL(this); "/>
+    </div>
+
+    <div style="padding: 10px">
+        <img id="selected_image" width="100%" src="{{ selected }}" alt="selected image" />
+    </div>
+    <div style="padding: 10px">
+        <input type="submit" value="Upload"/>
+    </div>
+
+    <h2>Cattle Detection using YOLO</h2>
+    <img src="{{ detected }}" alt="Cattle Detection">
+</form>
+
+<script>
+        function onSubmit() {
+
+        }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#selected_image').attr('src', e.target.result).width(350).height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
+</body>
+</html>
