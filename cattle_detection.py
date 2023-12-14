@@ -7,20 +7,17 @@ import sys
 # This is needed since the notebook is stored in the object_detection folder.
 sys.path.append("..")
 
-# Import utilites
 from object_detection.utils import label_map_util
 from object_detection.utils import visualization_utils as vis_util
 
 # Name of the directory containing the object detection module we're using
 MODEL_NAME = 'inference_graph'
-VIDEO_NAME = 'cows.mp4'
+VIDEO_NAME = 'cattle.mp4'
 
 # Grab path to current working directory
 CWD_PATH = os.getcwd()
 
-# Path to frozen detection graph .pb file, which contains the model that is used
-# for object detection.
-PATH_TO_CKPT = os.path.join(CWD_PATH, MODEL_NAME, 'frozen_inference_graph.pb')
+PATH_TO_CKPT = os.path.join(CWD_PATH, MODEL_NAME, 'yolo.pb')
 
 # Path to label map file
 PATH_TO_LABELS = os.path.join(CWD_PATH, 'training', 'label_map.pbtxt')
@@ -117,6 +114,11 @@ def detect_image(frame):
         [detection_boxes, detection_scores, detection_classes, num_detections],
         feed_dict={image_tensor: frame_expanded})
     print('3')
+    print('num: ', num)
+    # print('boxes: ', len(boxes))
+    # print('scores: ', scores)
+    # print('classes: ', classes)
+
     # Draw the results of the detection (aka 'visulaize the results')
     vis_util.visualize_boxes_and_labels_on_image_array(
         frame,
@@ -134,7 +136,7 @@ def detect_image(frame):
     print('5')
     cv2.destroyAllWindows()
     print('6')
-    return frame
+    return num, frame
 
 
 if __name__ == '__main__':

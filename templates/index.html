@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <script
-      class="jsbin"
-      src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
+            class="jsbin"
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
     ></script>
     <script
-      class="jsbin"
-      src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"
+            class="jsbin"
+            src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"
     ></script>
     <meta charset="UTF-8">
     <title>Cattle Count in Image</title>
@@ -52,6 +52,8 @@
             border-radius: 5px;
             padding: 5px;
         }
+
+
     </style>
 </head>
 <body>
@@ -70,11 +72,11 @@
     <div style="padding: 10px">
         Select an Image
         <input type="file" id="cattle_image" name="cattle_image"
-        onchange="readURL(this); "/>
+               onchange="readURL(this); "/>
     </div>
 
     <div style="padding: 10px">
-        <img id="selected_image" width="100%" src="{{ selected }}" alt="selected image" />
+        <img id="selected_image" width="100%" src="{{ selected }}" alt="selected image"/>
     </div>
     <div style="padding: 10px">
         <input type="submit" value="Upload"/>
@@ -82,6 +84,9 @@
 
     <h2>Cattle Detection using YOLO</h2>
     <img src="{{ detected }}" alt="Cattle Detection">
+
+    <h2>Cattle Count: <span style="color: blue">{{ count }}</span> </h2>
+
 </form>
 
 <script>
@@ -100,6 +105,8 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+
+
 </script>
 </body>
 </html>

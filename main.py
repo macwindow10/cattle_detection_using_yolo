@@ -23,11 +23,12 @@ def index():
         print(os.path.join('static/images', image.filename));
         img = cv2.imread(os.path.join('static/images', image.filename), cv2.IMREAD_COLOR)
         # print(type(img))
-        result_img = detect_image(img)
+        count, result_img = detect_image(img)
         full_filename = os.path.join('static/images', 'detected.jpg')
         return render_template('index.html',
                                selected=os.path.join('static/images', image.filename),
-                               detected=full_filename)
+                               detected=full_filename,
+                               count=int(count))
 
     return render_template('index.html')
 
